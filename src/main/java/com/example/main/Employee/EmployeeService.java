@@ -2,6 +2,9 @@ package com.example.main.Employee;
 
 
 import java.util.List;
+
+import com.example.main.Exception.ApiExceptionThrow;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +50,7 @@ public class EmployeeService {
 
         if(name != null){
 
+            boolean isPresent = false;
             // List out all the employees..
             List<Employee> employees =   employeeRepository.findAll();
             for(Employee employee:employees){
@@ -54,9 +58,16 @@ public class EmployeeService {
 
                 // Update the employee with given id.
                 if(employee.getId() == this.employeeId){
+                    
+                    isPresent = true;
                     employee.setName(name);
                     employeeRepository.save(employee);
                 }
+            }
+            
+            if(isPresent == false){
+                System.out.println("Employee not found");
+                throw new ApiExceptionThrow("Employee not found");
             }
         }
     }

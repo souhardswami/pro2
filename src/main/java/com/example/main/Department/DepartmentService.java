@@ -2,6 +2,8 @@ package com.example.main.Department;
 
 import java.util.List;
 
+import com.example.main.Exception.ApiExceptionThrow;
+
 import org.springframework.stereotype.Service;
 
 
@@ -20,10 +22,6 @@ public class DepartmentService {
         // System.out.println("This funcation is running");
         if(departmentRepository.findAll().size() > 0 ){
 
-            // Print all Employee
-            // for(Employee employee:employeeRepository.findAll()){        
-            //         System.out.println(employee.getName());  
-            // }
 
             return departmentRepository.findAll();
         }
@@ -44,15 +42,25 @@ public class DepartmentService {
                                                                             
                 // List out all the employees..
                 List<Department> departments =   departmentRepository.findAll();
+
+                boolean isPresent = false;
                 for(Department department:departments){
                     this.departmentId = departmentId;
     
                     // Update the employee with given id.
+
                     if(department.getId() == this.departmentId){
+
+                        isPresent = true;
                         department.setName(name);
                         departmentRepository.save(department);
                     }
-                }                                                   
+                }    
+                
+                if(!isPresent){
+                    System.out.println("Department not found");
+                    throw new ApiExceptionThrow("Department not found");
+                }
         }
 
 
