@@ -33,30 +33,34 @@ public class Employee {
     private String name;
     private int age;
     private String email;
+    private Long amount;
 
     @ManyToOne
     // @JoinColumn(name = "department_id", referencedColumnName = "department_id")
     private Department department;
-
+    
 
     public Employee() {
 
 
     }
 
-    public Employee(Long id, String name, int age, String email ) {
+    public Employee(Long id, String name, int age, String email, Long amount ) {
         this.id = id;
         this.name = name;  
         this.age = age;
         this.email = email;
+        this.amount = amount;
 
     }
 
     public Employee(String name, int age, String email) {
-        
+
+        System.out.println("called");
         this.name = name;
         this.age = age;
         this.email = email;
+
     } 
     
     public String getName() {
@@ -78,7 +82,6 @@ public class Employee {
     }   
 
     public void setEmail(String email) {
-        System.out.println("calleeemail");
         this.email = email;
     }   
 
@@ -90,6 +93,10 @@ public class Employee {
         this.department = department;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
     public Long getId() {
         return id;
     }
@@ -98,7 +105,12 @@ public class Employee {
         return department.getName();
     }
 
-    
+    public Long getAmount() {
+        return amount;
+    }
 
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }   
 
 }

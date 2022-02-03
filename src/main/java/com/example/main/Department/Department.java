@@ -26,6 +26,7 @@ public class Department {
 
     private String name;
     private boolean isTech;
+    private Long fund;
 
     public Department() {
     }
@@ -58,6 +59,13 @@ public class Department {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getFund() {
+        return fund;
+    }   
+    public void setFund(Long fund) {
+        this.fund = fund;
     }
     
 }

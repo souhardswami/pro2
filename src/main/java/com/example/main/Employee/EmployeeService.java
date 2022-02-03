@@ -37,10 +37,10 @@ public class EmployeeService {
     }
 
     public void registorNewEmployee(Employee employee){
-        System.out.println(employee.getDepartmentName());
 
+        // System.out.println(employee.getDepartmentName());
+        // System.out.println(employee.getAmout());
         
-
         employeeRepository.save(employee);
     }
 
