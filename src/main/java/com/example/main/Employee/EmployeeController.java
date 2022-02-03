@@ -33,6 +33,7 @@ public class EmployeeController {
     
     @PostMapping
     public void registorEmployee(@RequestBody Employee employee){
+    
         employeeService.registorNewEmployee(employee);
     }
 

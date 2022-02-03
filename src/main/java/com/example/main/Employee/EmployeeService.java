@@ -37,6 +37,9 @@ public class EmployeeService {
     }
 
     public void registorNewEmployee(Employee employee){
+        System.out.println(employee.getDepartmentName());
+
+        
 
         employeeRepository.save(employee);
     }
@@ -58,7 +61,7 @@ public class EmployeeService {
 
                 // Update the employee with given id.
                 if(employee.getId() == this.employeeId){
-                    
+
                     isPresent = true;
                     employee.setName(name);
                     employeeRepository.save(employee);

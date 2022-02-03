@@ -1,9 +1,12 @@
 package com.example.main.Employee;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -18,7 +21,7 @@ public class Employee {
     @SequenceGenerator(
             name = "employee_seq",
             sequenceName = "employee_seq",
-            allocationSize = 1                                              
+            allocationSize = 1                                            
     )
 
     @GeneratedValue(
@@ -32,26 +35,30 @@ public class Employee {
     private String email;
 
     @ManyToOne
+    // @JoinColumn(name = "department_id", referencedColumnName = "department_id")
     private Department department;
 
+
     public Employee() {
+
+
     }
 
-    public Employee(String name, int age, String email, Long id ) {
+    public Employee(Long id, String name, int age, String email ) {
         this.id = id;
         this.name = name;  
         this.age = age;
         this.email = email;
 
-
     }
 
     public Employee(String name, int age, String email) {
+        
         this.name = name;
         this.age = age;
         this.email = email;
-    }   
-
+    } 
+    
     public String getName() {
         return name;
     }                   
@@ -71,11 +78,16 @@ public class Employee {
     }   
 
     public void setEmail(String email) {
+        System.out.println("calleeemail");
         this.email = email;
     }   
 
     public String getEmail(String email) {
         return email;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Long getId() {
@@ -85,4 +97,8 @@ public class Employee {
     public String getDepartmentName() {
         return department.getName();
     }
+
+    
+
+
 }
